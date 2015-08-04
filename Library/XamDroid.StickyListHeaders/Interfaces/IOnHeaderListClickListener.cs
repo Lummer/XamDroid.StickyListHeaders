@@ -4,7 +4,7 @@ namespace com.refractored.components.stickylistheaders.Interfaces
 {
     public interface IOnHeaderListClickListener
     {
-        void OnHeaderClick(StickyListHeadersListView listView, View header, int itemPosition, long headerId,
+        void OnHeaderClick(MotionEvent e, StickyListHeadersListView listView, View header, int itemPosition, long headerId,
                            bool currentlySticky);
     }
 }

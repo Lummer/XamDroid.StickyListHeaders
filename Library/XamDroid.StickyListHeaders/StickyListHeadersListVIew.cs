@@ -102,7 +102,7 @@ namespace com.refractored.components.stickylistheaders
                 if (m_OnHeaderListClickListener == null)
                     return;
 
-                m_OnHeaderListClickListener.OnHeaderClick(m_StickyListHeadersListView, header, itemPosition, headerId, false);
+                m_OnHeaderListClickListener.OnHeaderClick(null, m_StickyListHeadersListView, header, itemPosition, headerId, false);
             }
         }
 
@@ -650,7 +650,6 @@ namespace com.refractored.components.stickylistheaders
         //TODO handle touched better, multitouch etc.
         public override bool OnTouchEvent(MotionEvent e)
         {
-
             var action = e.Action;
             if (action == MotionEventActions.Down && e.GetY() <= m_HeaderBottomPosition)
             {
@@ -673,8 +672,9 @@ namespace com.refractored.components.stickylistheaders
                         m_Header.Pressed = false;
                         m_Header.Invalidate();
                         Invalidate(0, 0, Width, m_HeaderBottomPosition);
+                        
                         if (OnHeaderListClickListener != null)
-                            OnHeaderListClickListener.OnHeaderClick(this, m_Header, m_HeaderPosition, m_CurrentHeaderId, true);
+                            OnHeaderListClickListener.OnHeaderClick(e, this, m_Header, m_HeaderPosition, m_CurrentHeaderId, true);
                     }
                     return true;
                 }
